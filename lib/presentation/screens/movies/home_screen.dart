@@ -1,6 +1,7 @@
 
 import 'package:dosmerk/config/constants/environment.dart';
 import 'package:dosmerk/presentation/providers/providers.dart';
+import 'package:dosmerk/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,26 +27,21 @@ class _HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<_HomeView> {
-
   @override
   void initState() {
     super.initState();
-
-    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();//este es el puente que va a llamar la siguiente pagina
   }
-
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
-    return ListView.builder(
-      itemCount: nowPlayingMovies.length,
-      itemBuilder: ( context, int index) {
-        final movie = nowPlayingMovies[index];
-        return ListTile(
-          title: Text(movie.title),
-        ) ;
-      },
+
+    return Column(
+      children: [
+        CustomAppbar(),
+        MoviesSlideshow(movies: nowPlayingMovies)
+      ]
     );
   }
 }
