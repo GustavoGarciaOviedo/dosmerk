@@ -16,8 +16,8 @@ class MovieMapper {
       overview: moviedb.overview,
       popularity: moviedb.popularity,
       posterPath: (moviedb.posterPath != '')
-        ?'https://image.tmdb.org/t/p/w500${moviedb.backdropPath}'
-        :'no-poster',
+        ?'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
+        :'https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg?w=2000',
       releaseDate: moviedb.releaseDate,
       title: moviedb.title,
       video: moviedb.video,

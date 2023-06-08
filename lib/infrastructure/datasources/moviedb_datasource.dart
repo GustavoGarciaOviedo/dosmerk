@@ -19,7 +19,10 @@ class MovieDbDatasource extends MoviesDatasource{
     );
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async{
-    final response = await dio.get('/movie/now_playing');//ojo que es el path ,la categoria(segmento) mejor dicho
+    final response = await dio.get('/movie/now_playing', 
+    queryParameters: {
+      'page':page,
+    });//ojo que es el path ,la categoria(segmento) mejor dicho
     final movieDBResponse = MovieDbResponse.fromJson(response.data);//convertir los datos de la respuesta en un objeto
     final List<Movie> movies= movieDBResponse.results
     .where((moviedb) => moviedb.posterPath != 'no-poster')//si no tinen poster no me la muestre
@@ -29,6 +32,44 @@ class MovieDbDatasource extends MoviesDatasource{
 
     return movies;
   }
+  //par alas peliculas populares
+  @override
+  Future<List<Movie>> getPopular({int page = 1}) async {
+    final response = await dio.get('/movie/now_playing', 
+    queryParameters: {
+      'page':page,
+    });//ojo que es el path ,la categoria(segmento) mejor dicho
+    return _jsonToMovies(response.data);
+  }
+  
+  @override
+  Future<List<Movie>> getTopRated({int page = 1}) async{
+    final response = await dio.get('/movie/top_rated', 
+    queryParameters: {
+      'page':page,
+    });//ojo que es el path ,la categoria(segmento) mejor dicho
+    return _jsonToMovies(response.data);
+  }
+  
+  @override
+  Future<List<Movie>> getUpComing({int page = 1}) async{
+    final response = await dio.get('/movie/upcoming', 
+    queryParameters: {
+      'page':page,
+    });//ojo que es el path ,la categoria(segmento) mejor dicho
+    return _jsonToMovies(response.data);
+  }
 
 }
 
+//para abreviar el contenido de la peticion ya que es de la misma page
+List<Movie> _jsonToMovies(Map<String,dynamic> json){
+   final movieDBResponse = MovieDbResponse.fromJson(json);//convertir los datos de la respuesta en un objeto
+    final List<Movie> movies= movieDBResponse.results
+    .where((moviedb) => moviedb.posterPath != 'no-poster')//si no tinen poster no me la muestre
+    .map(
+      (moviedb) => MovieMapper.movieDBToEntity(moviedb)).toList();//la data que llega la trasformo o 
+      //la uso a manera como yo la tengo en Movie  utilizando el mapeador MovieMapper.movieDBToEntity.
+
+    return movies;
+}
