@@ -28,6 +28,16 @@ class MovieRepositoryImpl extends MoviesRepository{
   Future<List<Movie>> getUpComing({int page = 1}) {
    return datasource.getUpComing(page:page);
   }
+  
+  @override
+  Future<Movie> getMovieById(String id) {
+    return datasource.getMovieById(id);
+  }
+  
+  @override
+  Future<List<Movie>> searchMovies(String query) {
+    return datasource.searchMovies(query);
+  }
 
 }
 
@@ -36,5 +46,5 @@ lo que significa que debe implementar todos los métodos definidos en la interfa
 MoviesRepository.*/
 
 /* este código define una clase MovieRepositoryImpl que implementa la interfaz MoviesRepository y 
-tiene un método getNowPlaying que aún no ha sido implementado. La clase se 
+tiene un método get--- que aún no ha sido implementado. La clase se 
 encargará de interactuar con una fuente de datos de películas a través de la propiedad datasource. */

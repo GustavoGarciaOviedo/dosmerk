@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:dosmerk/config/helpers/human_formats.dart';
 import 'package:dosmerk/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
@@ -109,7 +110,9 @@ class _Slide extends StatelessWidget {
                       child: Center(child: CircularProgressIndicator(strokeWidth: 2 )),
                     );
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    onTap: () => context.push('/home/0/movie/${movie.id}'),
+                    child: FadeIn(child: child));
                 },
               ),
             ),

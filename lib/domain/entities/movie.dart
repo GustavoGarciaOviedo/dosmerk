@@ -1,8 +1,15 @@
+import 'package:isar/isar.dart';
+part 'movie.g.dart';
+
+@collection//es parte de la base de datos local
 class Movie {
+
+  Id? isarId;//de bbdd
+
   final bool adult;
   final String backdropPath;
   final List<String> genreIds;
-  final int id;
+  final int id;//TODO: si es necesario cambiar el id a requerido
   final String originalLanguage;
   final String originalTitle;
   final String overview;
@@ -30,4 +37,5 @@ class Movie {
     required this.voteAverage,
     required this.voteCount
   });
+  
 }
