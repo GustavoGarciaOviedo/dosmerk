@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:dosmerk/domain/entities/movie.dart';
 
+
 import 'package:dosmerk/presentation/providers/providers.dart';
 
 import 'package:flutter/material.dart';
@@ -184,17 +185,26 @@ class _ActorsByMovie extends ConsumerWidget {
   }
 }
 
+//este es le provider de riverpod que estara pendiente de los favoritos ''corazon''
+final isFavoriteProvier =  FutureProvider.family.autoDispose((ref, int movieId) {
+  final localStorageRepository =  ref.watch(localStorageRepositoryProvider);
+  return localStorageRepository.isMovieFavorite(movieId);
+   //si esta en favoritos
+});
 
 
 
 
-class _CusmosSliverAppBar extends StatelessWidget {
+class _CusmosSliverAppBar extends ConsumerWidget {
 
   final Movie movie;
   const _CusmosSliverAppBar({ required this.movie});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final isFavoriteFuture = ref.watch(isFavoriteProvier(movie.id));//es el Provider que hara modificar el boton
+    
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
       backgroundColor: Colors.black,
@@ -211,9 +221,20 @@ class _CusmosSliverAppBar extends StatelessWidget {
         child: IconTheme(
           data: IconThemeData(size: 30.0, color: Colors.white),
           child: IconButton(
-            icon: Icon(Icons.favorite_border_sharp),//condicionado segun el estado
+            icon: isFavoriteFuture.when(
+              data: (isFavorite)=> isFavorite//condicionado segun el estado
+              ? Icon(Icons.favorite_rounded, color: Colors.red,)
+              : Icon(Icons.favorite_border_sharp),
+              error: (_,__)=>throw UnimplementedError(), 
+              loading: ()=> const  CircularProgressIndicator(strokeWidth: 2,)
+              ),
+              
+            
             onPressed: () {
-              // TODO: REALIZAR LAS ACCIONES AL PRESIONAR EL BOTÓN
+
+              ref.watch(localStorageRepositoryProvider)
+              .toggleFavorite(movie);
+              ref.invalidate(isFavoriteProvier(movie.id));
             },
           ),
         ),
