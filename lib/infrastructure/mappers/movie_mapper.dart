@@ -29,7 +29,7 @@ class MovieMapper {
       );
 
 
-//TODO: es muy importante saber que este es el acoplamiento y que segun lo que tenga en el modelo 
+//TODo: es muy importante saber que este es el acoplamiento y que segun lo que tenga en el modelo 
 //o lo que llegue de la api, aqui estara el correspondiente segun mi propio modelo de lo que espero que me llege
 // de alguna api
       static Movie movieDetailsToEntity( MovieDetails moviedb) => Movie(

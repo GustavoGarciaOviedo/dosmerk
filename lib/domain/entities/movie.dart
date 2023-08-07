@@ -9,7 +9,7 @@ class Movie {
   final bool adult;
   final String backdropPath;
   final List<String> genreIds;
-  final int id;//TODO: si es necesario cambiar el id a requerido
+  final int id;//todo si es necesario cambiar el id a requerido
   final String originalLanguage;
   final String originalTitle;
   final String overview;

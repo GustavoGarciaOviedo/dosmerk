@@ -25,7 +25,10 @@ class MoviesSlideshow extends StatelessWidget {
         ),
         viewportFraction: 0.8,
         scale: 0.8,
+        autoplayDelay: 10000,
         // autoplay: true,
+        autoplayDisableOnInteraction: true, // Detiene el autoplay al interactuar con el swiper
+        duration: 2000,
         itemCount: movies.length,
         itemBuilder: (context, index) => _Slide(movie: movies[index]),
         ),
@@ -37,7 +40,7 @@ class MoviesSlideshow extends StatelessWidget {
 
 class _Slide extends StatelessWidget {
   final Movie movie;
-  const _Slide({super.key, required this.movie});
+  const _Slide({ required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class _Slide extends StatelessWidget {
       
     );
     return Padding(
-    padding: EdgeInsets.only(bottom: 30),
+    padding: const EdgeInsets.only(bottom: 30),
     child: DecoratedBox(
       decoration: decoration,
       child: ClipRRect(
@@ -65,7 +68,7 @@ class _Slide extends StatelessWidget {
           fit: BoxFit.cover,
           loadingBuilder: (context, child, loadingProgress) {
             if(loadingProgress !=null){
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
             return FadeIn (child: child);
           },

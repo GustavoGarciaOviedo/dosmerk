@@ -56,7 +56,7 @@ class HomeViewState extends ConsumerState<HomeView> {
                     MovieHorizontalListview(
                       movies:nowPlayingMovies ,
                       title: 'En Cines',
-                      subTitle: 'Fecha',
+                      //subTitle: 'Fecha',
                       loadNextPage: () {
                         ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();//esta funcion se llama cuando el scroll se acerca al maxionm de la carga de la pantalla que va en 20 peluculas
                       },
@@ -66,7 +66,7 @@ class HomeViewState extends ConsumerState<HomeView> {
                       MovieHorizontalListview(
                         movies:popularMovies,
                         title: 'Populares',
-                        subTitle: 'en este mes',
+                        //subTitle: 'en este mes',
                         loadNextPage: () {
                           ref.read(popularMoviesProvider.notifier).loadNextPage();//esta funcion se llama cuando el scroll se acerca al maxionm de la carga de la pantalla que va en 20 peluculas
                         },
@@ -76,7 +76,7 @@ class HomeViewState extends ConsumerState<HomeView> {
                       MovieHorizontalListview(
                         movies:topRatedMovies,
                         title: 'Mas Valoradas',
-                        subTitle: 'En temporada',
+                        //subTitle: 'En temporada',
                         loadNextPage: () {
                           ref.read(topRatedMoviesProvider.notifier).loadNextPage();//esta funcion se llama cuando el scroll se acerca al maxionm de la carga de la pantalla que va en 20 peluculas
                         },

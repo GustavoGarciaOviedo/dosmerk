@@ -27,8 +27,8 @@ class StorageMoviesNotifier extends StateNotifier <Map<int,Movie>>{
     required this.localStorageRepository
     }):super({});
 
-  Future <void> loadNextPage() async{
-    final movies = await localStorageRepository.loadMovie(offset: page *10);//limit 20 seria lo ideal ...por 10 porque quiero que se carguen de a diez
+  Future <List<Movie>> loadNextPage() async{
+    final movies = await localStorageRepository.loadMovie(offset: page *10, limit: 20);//limit 20 seria lo ideal ...por 10 porque quiero que se carguen de a diez
     page++;
 
     final tempMoviesMap = <int, Movie>{};//esto por ue no quiero hacer multiples llamados para el stado
@@ -37,6 +37,23 @@ class StorageMoviesNotifier extends StateNotifier <Map<int,Movie>>{
     }
 
     state = {...state, ...tempMoviesMap};
+
+    return movies;//regreso las peliculas que vienen de la peticion
+  }
+
+  Future<void> toggleFavorite (Movie movie)async{
+
+    await localStorageRepository.toggleFavorite(movie);
+    final bool isMovieFavorite = state[movie.id] !=null;
+
+    if(isMovieFavorite){
+      state.remove(movie.id);
+      state= {...state};
+    }else{
+      state={...state, movie.id: movie};
+    }
+
+
   }
 
 }

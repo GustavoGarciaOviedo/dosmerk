@@ -23,7 +23,7 @@ final popularMoviesProvider =  StateNotifierProvider<MoviesNotifier, List<Movie>
 });
 
 
-//TODO: anexar par las peliculas proximas a salir y las mas votadas
+//TODo: anexar par las peliculas proximas a salir y las mas votadas
 
 //provider para peliculas toprated mas valoradas
 final topRatedMoviesProvider =  StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
@@ -57,7 +57,7 @@ class MoviesNotifier extends StateNotifier <List<Movie>>{
     if(isLoading) return;//bloqueo para queno se siga haciendo la peticion
     isLoading = true;
     currentPage++;
-    print('peticion: $currentPage');
+    //print('peticion: $currentPage');
     final List<Movie> movies =  await fetchMoreMovies(page:currentPage);
     state = ([...state, ...movies]);
     await Future.delayed(const Duration(milliseconds: 300));//es mejor que espere para que no se dispare de a dos

@@ -36,7 +36,7 @@ class MovieDbDatasource extends MoviesDatasource{
   //par alas peliculas populares
   @override
   Future<List<Movie>> getPopular({int page = 1}) async {
-    final response = await dio.get('/movie/popular', //TODO: verificarsi cambio a las normales
+    final response = await dio.get('/movie/popular', //TODo: verificarsi cambio a las normales
     queryParameters: {
       'page':page,
     });//ojo que es el path ,la categoria(segmento) mejor dicho

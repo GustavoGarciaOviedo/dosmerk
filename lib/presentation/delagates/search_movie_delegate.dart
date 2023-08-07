@@ -146,7 +146,7 @@ class _MovieItem extends StatelessWidget {
         onMovieSelected(context,movie);
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           children: [
             SizedBox(

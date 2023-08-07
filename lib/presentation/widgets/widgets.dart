@@ -1,11 +1,10 @@
 
 
-export 'package:dosmerk/presentation/widgets/shared/full_screen_loader.dart';
 
-export 'package:dosmerk/presentation/widgets/movies/movie_horizontal_listview.dart';
-
-export 'package:dosmerk/presentation/widgets/shared/custom_bottom_navigator.dart';
-
-export 'package:dosmerk/presentation/widgets/movies/movies_slideshow.dart';
-
-export 'package:dosmerk/presentation/widgets/shared/custom_appbar.dart';
+export 'shared/custom_appbar.dart';
+export 'shared/custom_bottom_navigator.dart';
+export 'shared/full_screen_loader.dart';
+export 'movies/movie_horizontal_listview.dart';
+export 'movies/movies_slideshow.dart';
+export 'movies/movie_masonry.dart';
+export 'movies/movies_poster_link.dart';

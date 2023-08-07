@@ -43,7 +43,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
     return Scaffold(
       body: CustomScrollView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         slivers: <Widget>[
           _CusmosSliverAppBar(movie: movie,),
           SliverList(delegate: SliverChildBuilderDelegate(
@@ -109,7 +109,7 @@ class _MovieDetails extends StatelessWidget {
 
           // gener de las peliculas
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Wrap(
                 children: [
                   ...movie.genreIds.map((gender) => Container(
@@ -123,8 +123,8 @@ class _MovieDetails extends StatelessWidget {
               ),
             ),
             _ActorsByMovie(movieId: movie.id.toString(),),
-            //TODO: actores
-            SizedBox(height: 20,)
+            //TODo: actores
+            const SizedBox(height: 20,)
 
         ],
       ),
@@ -173,9 +173,9 @@ class _ActorsByMovie extends ConsumerWidget {
                   ),
                 ),
                 //name
-                SizedBox(height: 3,),
+                const SizedBox(height: 3,),
                 Text(actor.name, maxLines: 1,overflow:TextOverflow.ellipsis,),
-                Text(actor.character??'', maxLines: 1,overflow:TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold),)
+                Text(actor.character??'', maxLines: 1,overflow:TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.bold),)
               ],
             ),
           );
@@ -213,27 +213,31 @@ class _CusmosSliverAppBar extends ConsumerWidget {
        InkResponse(
        //aqui es probable un ontap
         child: Ink(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Color.fromARGB(18, 12, 12, 12),
             
           ),
         child: IconTheme(
-          data: IconThemeData(size: 30.0, color: Colors.white),
+          data: const IconThemeData(size: 30.0, color: Colors.white),
           child: IconButton(
             icon: isFavoriteFuture.when(
               data: (isFavorite)=> isFavorite//condicionado segun el estado
-              ? Icon(Icons.favorite_rounded, color: Colors.red,)
-              : Icon(Icons.favorite_border_sharp),
+              ? const Icon(Icons.favorite_rounded, color: Colors.red,)
+              : const Icon(Icons.favorite_border_sharp),
               error: (_,__)=>throw UnimplementedError(), 
               loading: ()=> const  CircularProgressIndicator(strokeWidth: 2,)
               ),
               
             
-            onPressed: () {
+            onPressed: () async{
 
-              ref.watch(localStorageRepositoryProvider)
-              .toggleFavorite(movie);
+              // ref.watch(localStorageRepositoryProvider)
+              // .toggleFavorite(movie);
+
+              await ref.read(favoriteMoviesProvider.notifier)
+                .toggleFavorite(movie);
+              
               ref.invalidate(isFavoriteProvier(movie.id));
             },
           ),

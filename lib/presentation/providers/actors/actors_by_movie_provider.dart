@@ -15,7 +15,7 @@ final actorsByMovieProvider =  StateNotifierProvider<ActorsByMovieNotifier,Map<S
 typedef GetActorsCallback =  Future<List<Actor>>Function(String movieId);
 
 //'98787808': movie() este es un ejemplo que mira si exuiste ya y si no hace la petiion, es un cache
-class ActorsByMovieNotifier extends StateNotifier<Map<String,List<Actor>>>{//TODO: si presento problemas con el id de la pelicula es mejor pasarlo entoncesa  tipo string e todas las clases que sigan esete id
+class ActorsByMovieNotifier extends StateNotifier<Map<String,List<Actor>>>{//TODo: si presento problemas con el id de la pelicula es mejor pasarlo entoncesa  tipo string e todas las clases que sigan esete id
   final GetActorsCallback getActors;
   ActorsByMovieNotifier({required this.getActors
   }):super({});
@@ -24,7 +24,7 @@ class ActorsByMovieNotifier extends StateNotifier<Map<String,List<Actor>>>{//TOD
 
   Future<void> loadActors(String movieId)async{
     if(state[movieId]!=null)return;
-    print('relaizando peticon htpp $movieId');
+    //print('relaizando peticon htpp $movieId');
     final List<Actor> actors = await getActors(movieId);
 
     state = {...state, movieId: actors};

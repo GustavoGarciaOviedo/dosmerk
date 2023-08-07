@@ -32,7 +32,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
     if (!isInitialized && widget.loadNextPage != null) {
       scrollController.addListener(() { 
         if((scrollController.position.pixels+200 )>= scrollController.position.maxScrollExtent){
-          print('manda a llamar la funcion');
+          //print('manda a llamar la funcion');
           widget.loadNextPage!();
         }
       });
@@ -167,8 +167,8 @@ class _Title extends StatelessWidget {
 
     final titleStyle =  Theme.of(context).textTheme.titleLarge;
     return Container(
-      padding: EdgeInsets.only(top: 10),
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
           if(title != null) Text('$title', style: titleStyle,),
