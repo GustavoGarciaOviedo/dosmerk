@@ -11,7 +11,7 @@ class ActorMapper{
     name: cast.name, 
     profilePath: cast.profilePath != null
         ?'https://image.tmdb.org/t/p/w500${cast.profilePath}'
-        :'https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png',
+        :'https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg',
     character: cast.character
     );
 }

@@ -249,7 +249,7 @@ class _CusmosSliverAppBar extends ConsumerWidget {
       foregroundColor: Colors.white,
       
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.symmetric(horizontal: 10,vertical: 6),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 6),
         // title: Text(
         //   movie.title,
         //   style: TextStyle(fontSize: 20),
