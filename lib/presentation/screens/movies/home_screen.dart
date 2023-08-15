@@ -19,17 +19,19 @@ final int pageIndex;
 
   final viewRoutes= const <Widget>[
     HomeView(),
-    SizedBox(),
     FavoriteView(),
+
   ];
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: IndexedStack(//este es le que va a cambiar las paginas
+     
+      body: IndexedStack (//este es le que va a cambiar las paginas
         index: pageIndex,
         children: viewRoutes,//viewroutes es una array de widgets por eso omito las llaves []
       ),
+      
       bottomNavigationBar: 
       CustomBottomNavigator(currentIndex: pageIndex ) ,
       );

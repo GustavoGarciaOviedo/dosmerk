@@ -17,11 +17,9 @@ class CustomBottomNavigator extends StatelessWidget {
         context.go('/home/0');
         break;
       case 1:
-        context.go('/home/0');//si incluyo algun tengo que estar pendiente a donde me lleva cada ubicacion
+        context.go('/home/1');//si incluyo algun tengo que estar pendiente a donde me lleva cada ubicacion
         break;//voy a borrar las categorias por un tiempo
-      case 2:
-        context.go('/home/2');
-        break;
+
       
       
     }
@@ -39,14 +37,15 @@ class CustomBottomNavigator extends StatelessWidget {
           icon: Icon(Icons.home),
           label: 'inicio'
           ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.crop_square, color: Colors.white,),
-          label: ''
-          ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.crop_square, color: Colors.white,),
+        //   label: ''
+        //   ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite_outline),
           label: 'favoritos'
-          )
+          ),
+   
       ]
     );
   }

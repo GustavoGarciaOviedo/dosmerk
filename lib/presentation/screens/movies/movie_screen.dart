@@ -97,7 +97,7 @@ class _MovieDetails extends StatelessWidget {
                         fontWeight: FontWeight.bold), ),
 
                   const SizedBox(height: 3,),
-                  Text(movie.overview, maxLines: 7,
+                  Text(movie.overview, maxLines: 8,
                   overflow: TextOverflow.ellipsis,),
 
                 ],

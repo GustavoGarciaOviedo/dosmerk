@@ -1,4 +1,4 @@
-package com.example.dosmerk
+package com.gustavogarcia.name
 
 import io.flutter.embedding.android.FlutterActivity
 
